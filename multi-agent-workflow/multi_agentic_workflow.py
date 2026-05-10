@@ -93,7 +93,9 @@ class MultiAgentWorkflow:
         """Build and compile the LangGraph state graph."""
         graph = StateGraph(ExamHelperState)
 
-        # 🛠️ TODO: Add nodes and edges for the multi-agent workflow
+        graph.add_node("orchestrator", make_orchestrator_node(self.orchestrator))
+        graph.add_edge(START, "orchestrator")
+        graph.add_edge("orchestrator", END)
 
         return graph.compile(checkpointer=self.memory)
 
@@ -130,7 +132,10 @@ class MultiAgentWorkflow:
         """Return a welcoming greeting from the orchestrator model."""
         try:
             response = self.orchestrator.model.invoke(
-                "TODO: Generate a welcoming, helpful greeting message"
+                "You are the Exam Helper assistant. Write a single warm 1-2 sentence greeting "
+                "for a student who just opened the app. Briefly mention you can either explain "
+                "concepts simply or generate exam-ready study notes, and invite them to ask "
+                "their first question. No emojis, no lists, plain text only."
             )
             return response.content if response and response.content else "Hi! What would you like to learn today?"
         except Exception:

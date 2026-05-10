@@ -1,6 +1,6 @@
 # Conditional Routing Agent
 
-An example agentic workflow demonstrating conditional routing in LangGraph. It asks the user how they are feeling, utilizes a Gemini-2.5-flash LLM model to assess whether the user's energy level is "low", "medium", or "high", and routes the workflow to one of three corresponding handler nodes to provide activity suggestions.
+An example agentic workflow demonstrating conditional routing in LangGraph. It asks the user how they are feeling, utilizes a gemini-2.0-flash-lite LLM model to assess whether the user's energy level is "low", "medium", or "high", and routes the workflow to one of three corresponding handler nodes to provide activity suggestions.
 
 ---
 
